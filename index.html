@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukesh Venkat Sai | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome/Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Form Feedback Popup CSS -->
+    <style>
+        .form-popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-weight: 500;
+        }
+        .form-popup.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        .form-popup.success {
+            border-color: #4ade80;
+            color: #4ade80;
+        }
+        .form-popup.error {
+            border-color: #f87171;
+            color: #f87171;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="hero-bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <a href="#home" class="logo">Mukesh</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-glow-bridge"></div>
+            <div class="hero-content reveal">
+                <h4 class="greeting">Hi, I'm</h4>
+                <h1 class="name">Mukesh Venkat Sai</h1>
+                <h2 class="role">
+                    <span class="typing-text"></span><span class="cursor">|</span>
+                </h2>
+                <p class="description">
+                    A passionate student and developer building innovative solutions, writing robust backends, and crafting seamless user experiences.
+                </p>
+                <div class="hero-keywords">
+                    <span class="keyword">JavaScript</span>
+                    <span class="keyword">Node.js</span>
+                    <span class="keyword">React</span>
+                    <span class="keyword">REST API</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" download>
+                        <i class="fa-solid fa-download"></i> Download Resume
+                    </a>
+                    <a href="https://github.com/dmukeshmvs" target="_blank" class="btn btn-icon">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/d-mukesh-venkat-sai" target="_blank" class="btn btn-icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image reveal right">
+                <div class="image-wrapper">
+                    <!-- Placeholder vector illustration representation -->
+                    <div class="developer-illustration">
+                        <div class="illustration-halo"></div>
+                        <i class="fa-solid fa-code icon-large"></i>
+                        <div class="orbital-icons">
+                            <div class="orbit-wrap orbit-react">
+                                <i class="fa-brands fa-react orbit-icon"></i>
+                            </div>
+                            <div class="orbit-wrap orbit-node">
+                                <i class="fa-brands fa-node-js orbit-icon"></i>
+                            </div>
+                            <div class="orbit-wrap orbit-java">
+                                <i class="fa-brands fa-java orbit-icon"></i>
+                            </div>
+                            <div class="orbit-wrap orbit-js">
+                                <i class="fa-brands fa-js orbit-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-title reveal">
+                <h2>About <span>Me</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-container reveal up">
+                <div class="glass-card about-card">
+                    <p>
+                        I am a dedicated <strong>Computer Science Student</strong> with a strong focus on <strong>Full Stack Development</strong> and robust <strong>Backend Systems</strong>. 
+                    </p>
+                    <p>
+                        I am passionate about solving real-world problems through code, continuously learning modern technologies, and building applications that make an impact. My journey in tech is driven by curiosity and the endless possibilities of software engineering.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>3+</h3>
+                            <span>Projects Built</span>
+                        </div>
+                        <div class="stat">
+                            <h3>10+</h3>
+                            <span>Technologies</span>
+                        </div>
+                        <div class="stat">
+                            <h3>100%</h3>
+                            <span>Commitment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="section-title reveal">
+                <h2>Tech <span>Arsenal</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="skills-grid reveal up">
+                <!-- Skill Items -->
+                <div class="skill-card"><i class="fa-brands fa-java" style="color:#f89820"></i><span>Java</span></div>
+                <div class="skill-card"><i class="fa-brands fa-js-square" style="color:#f7df1e"></i><span>JavaScript</span></div>
+                <div class="skill-card"><i class="fa-solid fa-c" style="color:#00599C"></i><span>C++</span></div>
+                <div class="skill-card"><i class="fa-brands fa-html5" style="color:#e34f26"></i><span>HTML</span></div>
+                <div class="skill-card"><i class="fa-brands fa-css3-alt" style="color:#1572b6"></i><span>CSS</span></div>
+                <div class="skill-card"><i class="fa-brands fa-react" style="color:#61dafb"></i><span>React</span></div>
+                <div class="skill-card"><i class="fa-brands fa-node-js" style="color:#339933"></i><span>Node.js</span></div>
+                <div class="skill-card"><i class="fa-solid fa-server" style="color:#eeeeee"></i><span>Express.js</span></div>
+                <div class="skill-card"><i class="fa-solid fa-database" style="color:#47A248"></i><span>MongoDB</span></div>
+                <div class="skill-card"><i class="fa-solid fa-database" style="color:#4479A1"></i><span>MySQL</span></div>
+                <div class="skill-card"><i class="fa-solid fa-cloud" style="color:#00a3cc"></i><span>REST APIs</span></div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <div class="section-title reveal">
+                <h2>My <span>Journey</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="timeline-v2 reveal up">
+                <!-- Timeline items will alternate sides in CSS -->
+                <div class="timeline-item-v2 left">
+                    <div class="timeline-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="timeline-card glass-card">
+                        <div class="timeline-date">Present</div>
+                        <h3>B.Tech – Computer Science and Engineering</h3>
+                        <h4>Lovely Professional University</h4>
+                        <p class="grade">CGPA: 7.3</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item-v2 right">
+                    <div class="timeline-icon"><i class="fa-solid fa-book"></i></div>
+                    <div class="timeline-card glass-card">
+                        <div class="timeline-date">Intermediate</div>
+                        <h3>Sri Chaitanya Junior College</h3>
+                        <p class="grade">Percentage: 97.3%</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item-v2 left">
+                    <div class="timeline-icon"><i class="fa-solid fa-school"></i></div>
+                    <div class="timeline-card glass-card">
+                        <div class="timeline-date">Matriculation</div>
+                        <h3>Sri Chaitanya Techno School</h3>
+                        <p class="grade">Percentage: 100%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="section-title reveal">
+                <h2>Featured <span>Projects</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="projects-grid">
+                
+                <div class="project-card glass-card reveal up" style="transition-delay: 0.1s;">
+                    <div class="project-info">
+                        <h3>Virtual Personal Trainer</h3>
+                        <p>An interactive system that uses computer vision to track exercises, provide feedback, and create personalized fitness routines.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>OpenCV</span>
+                            <span>MediaPipe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/dmukeshmvs/Virtual-Personal-Trainer" target="_blank" class="btn btn-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card reveal up" style="transition-delay: 0.2s;">
+                    <div class="project-info">
+                        <h3>Management of Material During Disaster</h3>
+                        <p>A logistics platform designed to efficiently trace, allocate, and distribute essential resources during emergency relief operations.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/dmukeshmvs/Management-of-Material-During-Disaster" target="_blank" class="btn btn-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card reveal up" style="transition-delay: 0.3s;">
+                    <div class="project-info">
+                        <h3>User Management API</h3>
+                        <p>A robust backend service for managing user authentication, authorization, profiles, and role-based access control securely.</p>
+                        <div class="project-tech">
+                            <span>Express.js</span>
+                            <span>JWT</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/dmukeshmvs/User_Management_API" target="_blank" class="btn btn-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card reveal up" style="transition-delay: 0.4s;">
+                    <div class="project-info">
+                        <h3>CMS API</h3>
+                        <p>A headless Content Management System API allowing efficient creation, retrieval, and management of dynamic digital content.</p>
+                        <div class="project-tech">
+                            <span>Node.js</span>
+                            <span>RESTful</span>
+                            <span>Express.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/dmukeshmvs/cms_api" target="_blank" class="btn btn-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="section-title reveal">
+                <h2>Get In <span>Touch</span></h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="contact-container reveal up">
+                <div class="contact-info glass-card">
+                    <h3>Let's Connect</h3>
+                    <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                    
+                    <div class="contact-methods">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mukeshvenkatsaidoddi@gmail.com" target="_blank" class="method-item">
+                            <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <h4>Email</h4>
+                                <span>mukeshvenkatsaidoddi@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/d-mukesh-venkat-sai" target="_blank" class="method-item">
+                            <div class="icon-box"><i class="fa-brands fa-linkedin-in"></i></div>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <span>D Mukesh Venkat Sai</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/dmukeshmvs" target="_blank" class="method-item">
+                            <div class="icon-box"><i class="fa-brands fa-github"></i></div>
+                            <div>
+                                <h4>GitHub</h4>
+                                <span>dmukeshmvs</span>
+                            </div>
+                        </a>
+                        <a href="tel:+918074558006" class="method-item">
+                            <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <h4>Phone</h4>
+                                <span>+91-8074558006</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form glass-card" id="contactForm">
+                    
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder=" " required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Mukesh</div>
+            <div class="social-links">
+                <a href="https://github.com/dmukeshmvs" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/d-mukesh-venkat-sai" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mukeshvenkatsaidoddi@gmail.com" target="_blank" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Mukesh Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Form Feedback Popups -->
+    <div id="form-success" class="form-popup success">
+        <span>Message Sent Successfully ✓</span>
+    </div>
+    <div id="form-error" class="form-popup error">
+        <span>Something went wrong. Please try again.</span>
+    </div>
+
+    <!-- Canvas/Particles Scripts inside script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
