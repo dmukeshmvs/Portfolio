@@ -116,7 +116,7 @@ themeToggle.addEventListener('click', () => {
 // TYPING ANIMATION
 // =========================================
 const typingText = document.querySelector('.typing-text');
-const roles = ['Software Developer', 'Full Stack Developer', 'Computer Science Student'];
+const roles = ['Full Stack Developer', 'Backend Developer', 'Software Engineer', 'Web Developer', 'REST API Developer', 'Computer Science Student'];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -124,11 +124,11 @@ let typingDelay = 100;
 
 function type() {
     const currentRole = roles[roleIndex];
-    
+
     if (isDeleting) {
         typingText.textContent = currentRole.substring(0, charIndex - 1);
         charIndex--;
-        typingDelay = 50; 
+        typingDelay = 50;
     } else {
         typingText.textContent = currentRole.substring(0, charIndex + 1);
         charIndex++;
@@ -195,16 +195,16 @@ function initTilt(element) {
         const rect = element.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const rotateX = (y - centerY) / 10;
         const rotateY = (centerX - x) / 10;
-        
+
         element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
     });
-    
+
     element.addEventListener('mouseleave', () => {
         element.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
     });
@@ -265,7 +265,7 @@ class Particle {
             let dx = mouse.x - this.x;
             let dy = mouse.y - this.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
-            
+
             if (distance < mouse.radius) {
                 const forceDirectionX = dx / distance;
                 const forceDirectionY = dy / distance;
@@ -286,28 +286,28 @@ function initCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     particlesArray = [];
-    
+
     // Adjust particle count based on screen size
     let numberOfParticles = (canvas.width * canvas.height) / 10000;
-    
+
     // Check theme for colors
     const isDark = document.body.classList.contains('dark-theme');
-    
+
     for (let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 2) + 0.5;
         let x = Math.random() * innerWidth;
         let y = Math.random() * innerHeight;
         let velocityX = (Math.random() * 1) - 0.5;
         let velocityY = (Math.random() * 1) - 0.5;
-        
+
         // Use theme matching colors
         const colors = [
             isDark ? 'rgba(0, 240, 255, 0.4)' : 'rgba(0, 150, 255, 0.4)',  // Blue
             isDark ? 'rgba(138, 43, 226, 0.4)' : 'rgba(100, 30, 200, 0.4)', // Purple
-            'rgba(255, 255, 255, 0.2)' 
+            'rgba(255, 255, 255, 0.2)'
         ];
         let color = colors[Math.floor(Math.random() * colors.length)];
-        
+
         particlesArray.push(new Particle(x, y, size, color, velocityX, velocityY));
     }
 }
@@ -315,7 +315,7 @@ function initCanvas() {
 function animateParticles() {
     requestAnimationFrame(animateParticles);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     // Draw connecting lines
     for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].update();
@@ -323,11 +323,11 @@ function animateParticles() {
             let dx = particlesArray[i].x - particlesArray[j].x;
             let dy = particlesArray[i].y - particlesArray[j].y;
             let distance = Math.sqrt(dx * dx + dy * dy);
-            
+
             if (distance < 150) {
                 const isDark = document.body.classList.contains('dark-theme');
                 ctx.beginPath();
-                ctx.strokeStyle = isDark ? `rgba(255, 255, 255, ${0.12 - distance/1500})` : `rgba(0, 0, 0, ${0.06 - distance/3000})`;
+                ctx.strokeStyle = isDark ? `rgba(255, 255, 255, ${0.12 - distance / 1500})` : `rgba(0, 0, 0, ${0.06 - distance / 3000})`;
                 ctx.lineWidth = 0.5;
                 ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                 ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
@@ -351,13 +351,13 @@ initCanvas();
 animateParticles();
 
 // Contact form submission with Formspree (AJAX)
-document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
+document.getElementById('contactForm')?.addEventListener('submit', async function (e) {
     e.preventDefault();
     const form = e.target;
     const btn = form.querySelector('button');
     const btnText = btn.querySelector('span');
     const btnIcon = btn.querySelector('i');
-    
+
     // UI Elements for feedback
     const successPopup = document.getElementById('form-success');
     const errorPopup = document.getElementById('form-error');
@@ -365,7 +365,7 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
     // Button loading state
     const originalText = btnText.textContent;
     const originalIconClass = btnIcon.className;
-    
+
     btn.disabled = true;
     btnText.textContent = 'Sending...';
     btnIcon.className = 'fa-solid fa-spinner fa-spin';
@@ -407,3 +407,31 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
         btnIcon.className = originalIconClass;
     }
 });
+
+// =========================================
+// RESUME MODAL LOGIC
+// =========================================
+const resumeBtn = document.getElementById('resume-btn');
+const resumeModal = document.getElementById('resume-modal');
+const closeModal = document.querySelector('.close-modal');
+
+if (resumeBtn && resumeModal) {
+    resumeBtn.addEventListener('click', () => {
+        resumeModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+
+    const closeFunc = () => {
+        resumeModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
+
+    closeModal.addEventListener('click', closeFunc);
+
+    // Close on outside click
+    window.addEventListener('click', (e) => {
+        if (e.target === resumeModal) {
+            closeFunc();
+        }
+    });
+}

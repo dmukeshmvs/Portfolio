@@ -174,7 +174,7 @@ ul {
     left: 0;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    z-index: 9999;
+    z-index: 10005;
     transition: transform 0.1s ease-out, opacity 0.3s ease;
 }
 
@@ -371,7 +371,7 @@ ul {
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 50px;
 }
 
 .nav-links li a {
@@ -496,7 +496,7 @@ ul {
     font-size: 1.1rem;
     color: var(--text-secondary);
     margin-bottom: 40px;
-    max-width: 500px;
+    max-width: 700px;
 }
 
 .hero-buttons {
@@ -517,8 +517,8 @@ ul {
 
 .image-wrapper {
     position: relative;
-    width: 420px;
-    height: 420px;
+    width: 480px;
+    height: 480px;
     margin-right: 50px;
     margin-top: 10px;
 }
@@ -534,7 +534,6 @@ ul {
     position: relative;
     border: 1px solid var(--border-glow);
     box-shadow: inset 0 0 50px rgba(0, 240, 255, 0.1), 0 0 40px rgba(138, 43, 226, 0.1);
-    animation: floatImage 8s ease-in-out infinite alternate;
     z-index: 1;
 }
 
@@ -555,13 +554,12 @@ ul {
     100% { transform: translateY(-25px) rotate(2deg); }
 }
 
-.icon-large {
-    font-size: 8rem;
-    color: rgba(255,255,255,0.8);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
 }
 
 .hero-glow-bridge {
@@ -615,61 +613,6 @@ ul {
     100% { transform: translateY(-12px); }
 }
 
-/* Orbital Icons (Right side) */
-.orbital-icons {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-.orbit-wrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1px;
-    height: 1px;
-    animation: orbit 20s linear infinite;
-}
-
-.orbit-react { animation-delay: 0s; }
-.orbit-node { animation-delay: -5s; }
-.orbit-java { animation-delay: -10s; }
-.orbit-js { animation-delay: -15s; }
-
-.orbit-icon {
-    position: absolute;
-    left: 160px;
-    font-size: 1.8rem;
-    color: var(--text-primary);
-    background: var(--bg-card);
-    padding: 14px;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    animation: counterOrbit 20s linear infinite;
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.orbit-react .orbit-icon { animation-delay: 0s; }
-.orbit-node .orbit-icon { animation-delay: -5s; }
-.orbit-java .orbit-icon { animation-delay: -10s; }
-.orbit-js .orbit-icon { animation-delay: -15s; }
-
-@keyframes orbit {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes counterOrbit {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
-}
 
 /* Background Gradient Blobs */
 .hero-bg-blobs {
@@ -1402,4 +1345,94 @@ footer {
         flex-direction: column;
         gap: 30px;
     }
+}
+
+/* =========================================
+   RESUME MODAL STYLES
+   ========================================= */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 450px;
+    width: 90%;
+    padding: 35px;
+    text-align: center;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.close-modal:hover {
+    color: var(--neon-blue);
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: var(--text-primary);
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-icon-text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.btn-icon-text:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--neon-purple);
+    transform: translateY(-2px);
 }
