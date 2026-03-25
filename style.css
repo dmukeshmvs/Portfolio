@@ -1016,6 +1016,84 @@ body.light-theme .project-tech span {
 /* Old Github integration styles removed */
 
 /* =========================================
+   CERTIFICATES SECTION
+   ========================================= */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.certificate-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding: 25px;
+    transition: var(--transition-smooth);
+}
+
+.certificate-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-purple);
+    box-shadow: 0 15px 30px rgba(138, 43, 226, 0.15);
+}
+
+.certificate-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.certificate-info h3 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.certificate-info h4 {
+    font-size: 1rem;
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.certificate-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.certificate-links {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.certificate-links .btn-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.certificate-links .btn-icon:hover {
+    transform: scale(1.1);
+    background: var(--gradient-primary);
+    color: #fff;
+    box-shadow: 0 0 20px var(--border-glow);
+    border-color: var(--neon-blue);
+}
+
+body.light-theme .certificate-card:hover {
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-color: var(--neon-blue);
+}
+
+/* =========================================
    CONTACT SECTION
    ========================================= */
 .contact-container {
@@ -1263,6 +1341,10 @@ footer {
     .orbital-icons {
         transform: scale(0.7);
     }
+
+    .certificates-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -1319,6 +1401,10 @@ footer {
     
     .timeline-content::before {
         display: none;
+    }
+
+    .certificates-grid {
+        grid-template-columns: 1fr;
     }
 }
 

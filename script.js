@@ -20,7 +20,7 @@ window.addEventListener('mousemove', (e) => {
 });
 
 // Cursor expansion on hover
-const interactables = document.querySelectorAll('a, button, .skill-card, .project-card, .repo-card');
+const interactables = document.querySelectorAll('a, button, .skill-card, .project-card, .repo-card, .certificate-link');
 interactables.forEach(link => {
     link.addEventListener('mouseenter', () => body.classList.add('cursor-hover'));
     link.addEventListener('mouseleave', () => body.classList.remove('cursor-hover'));
@@ -211,7 +211,7 @@ function initTilt(element) {
 }
 
 // Apply tilt to static project cards
-document.querySelectorAll('.project-card').forEach(card => initTilt(card));
+document.querySelectorAll('.project-card, .certificate-card').forEach(card => initTilt(card));
 
 // =========================================
 // CANVAS PARTICLES BACKGROUND
